@@ -108,75 +108,7 @@ public class EleveDao extends ConnectionDAO{
 		 }
 		 }
 		 return returnValue;
-		 }
-
-
-	
-	
-	
-	
-	/*
-	 * Permet de modifier les caractéristiques d'un étudiant
-	 * @param idEleve
-	 * @return Eleve
-	 */
-	
-	/*public int update(Eleve eleve) {
-		 Connection con = null;
-		 PreparedStatement ps = null;
-		 int returnValue = 0;			
-
-		 // connexion a la base de donnees
-		 try {
-		 // tentative de connexion
-		 con = DriverManager.getConnection("jdbc:oracle:thin:@oracle.esigelec.fr:1521:orcl", "C##BDD4_26", "BDD426");
-		 // preparation de l'instruction SQL, chaque ? represente une valeur
-		 // a communiquer dans la modification.
-		 // les getters permettent de recuperer les valeurs des attributs
-		 ps = con.prepareStatement("UPDATE ETUDIANT SET NOMETUDIANT = ? WHERE IDETUDIANT=?");
-		 //ps.setInt(1, eleve.getIdEleve());
-		 //ps.setString(2, eleve.getmotDePasseEleve());
-		 //ps.setString(3, LOGIN);
-		 ps.setString(3, "eleve.getNomEleve()");
-		 //ps.setString(4, eleve.getPrenomEleve());
-		 //ps.setString(5, eleve.getAdresseMailEleve());
-		 //ps.setString(6, eleve.getFiliereEleve());
-		 // Execution de la requete
-		 returnValue = ps.executeUpdate();
-		 } catch (Exception e) {
-		 e.printStackTrace();
-		 } finally {
-		 // fermeture du preparedStatement et de la connexion
-		 try {
-		 if (ps != null) {
-		 ps.close();
-		 }
-		 } catch (Exception ignore) {
-		 }
-		 try {
-		 if (con != null) {
-		 con.close();
-		 }
-		 } catch (Exception ignore) {
-		 }
-		 }
-		 return returnValue;
-		 }*/
-	
-	
-	
-	
-	
-	/*
-	 * Permet de retourner la liste des étudiants présents dans la base de données
-	 * @param listEleve
-	 * @return ArratList Eleve
-	 */
-
-	
-	
-	
-	
+		 }	
 	
 	
 	/*
@@ -234,15 +166,6 @@ public class EleveDao extends ConnectionDAO{
 		
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		public static void main(String[] args) throws SQLException {
 			int returnValue;
 			EleveDao EleveDAO = new EleveDao();
@@ -258,17 +181,17 @@ public class EleveDao extends ConnectionDAO{
 			Eleve E4 = new Eleve(ids[3],"StringEleve","OTAMA", "Simon", 
 					"OTAMA@gmail.com","apprentie");
 			// test de la methode add
-			//returnValue=EleveDAO.add(E1);
-			//returnValue=EleveDAO.add(E2);
-			//returnValue=EleveDAO.add(E3);
+			returnValue=EleveDAO.add(E1);
+			returnValue=EleveDAO.add(E2);
+			returnValue=EleveDAO.add(E3);
 			returnValue=EleveDAO.add(E4);
 			System.out.println("Ajout éffectué");
 			System.out.println(returnValue + " eleve ajoute");
 			// test de la methode get
-			//Eleve E = EleveDAO.get(E1);
-			// appel implicite de la methode toString de la classe Object (a eviter)
-			//System.out.println(E1);
-			//System.out.println();
+			Eleve E = EleveDAO.get(E1);
+			
+			System.out.println(E1);
+			System.out.println();
 			
 			
 			// test de la methode getList
@@ -282,12 +205,11 @@ public class EleveDao extends ConnectionDAO{
 				System.out.println(e.toString());
 			}
 			// test de la methode delete
-			// On supprime les 3 articles qu'on a créé
 			returnValue = 0;
-			//for (int id : ids) {
-			//returnValue = EleveDao.delete(222222);
-				//System.out.println(returnValue + " fournisseur supprime");
-			//}
+			for (int id : ids) {
+			returnValue = EleveDao.delete(222222);
+				System.out.println(returnValue + " fournisseur supprime");
+			}
 			System.out.println();
 			
 			
