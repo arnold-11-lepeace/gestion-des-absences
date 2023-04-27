@@ -208,11 +208,13 @@ public class CreerEtudiant {
 				{
 					txtMessageErreur.setVisible(true);
 					txtAjoutReussi.setVisible(false);
+					CreerEtudiant window = new CreerEtudiant();
 				}
 				else {
 					txtMessageErreur.setVisible(false);
-					txtAjoutReussi.setVisible(true
-							);
+					txtAjoutReussi.setVisible(true);
+					//CreerEtudiant.setVisible(true);
+					CreerEtudiant window = new CreerEtudiant();
 				}
 				
 				

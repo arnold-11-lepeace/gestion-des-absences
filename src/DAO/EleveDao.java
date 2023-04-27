@@ -193,7 +193,7 @@ public class EleveDao extends ConnectionDAO {
 		ArrayList<Eleve> returnValue = new ArrayList<Eleve>();
 		// connexion a la base de donnees
 		try {
-			con = DriverManager.getConnection("jdbc:oracle:thin:@oracle.esigelec.fr:1521:orcl", "C##BDD4_26", "BDD426");
+			con = DriverManager.getConnection(URL,LOGIN , PASS);
 			ps = con.prepareStatement("SELECT * FROM ETUDIANT");
 			// on execute la requete
 			rs = ps.executeQuery();
