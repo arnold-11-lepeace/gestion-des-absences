@@ -36,6 +36,23 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.SpringLayout;
+import java.awt.Insets;
 
 public class SupprimerEtudiant {
 
@@ -69,68 +86,15 @@ public class SupprimerEtudiant {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		SupprimerEtudiant = new JFrame();
-		SupprimerEtudiant.setBounds(100, 100, 450, 300);
-		SupprimerEtudiant.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SupprimerEtudiant.getContentPane().setLayout(null);
+		initialiserJFrame();
 		
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(128, 128, 255));
-		panel.setBounds(10, 11, 414, 53);
-		SupprimerEtudiant.getContentPane().add(panel);
-		panel.setLayout(null);
+		initialiserEntete();
 		
-		JLabel lblNewLabel = new JLabel("ESIGELEC");
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblNewLabel.setBounds(10, 11, 91, 36);
-		panel.add(lblNewLabel);
+		JPanel panelCorps = new JPanel();
+		panelCorps.setBounds(10, 65, 414, 400);
+		SupprimerEtudiant.getContentPane().add(panelCorps);
 		
-		JButton btnNewButton = new JButton("Déconnexion");
-		btnNewButton.setBackground(new Color(255, 0, 0));
-		btnNewButton.setBounds(283, 11, 108, 23);
-		panel.add(btnNewButton);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 2, 414, 188);
-		SupprimerEtudiant.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		/*JPanel panel_11 = new JPanel();
-		panel_11.setBounds(10, 62, 414, 553);
-		SupprimerEtudiant.getContentPane().add(panel_11);
-		panel_11.setLayout(null);
-		panel_11.add(panel_1);*/
-		
-		
-				
-		
-		
-		
-		JTextPane txtpnId = new JTextPane();
-		txtpnId.setText("Id");
-		txtpnId.setEditable(false);
-		txtpnId.setBounds(10, 21, 60, 20);
-		panel_1.add(txtpnId);
-		
-		JTextPane txtpnNom = new JTextPane();
-		txtpnNom.setText("Nom");
-		txtpnNom.setEditable(false);
-		txtpnNom.setBounds(72, 21, 96, 20);
-		panel_1.add(txtpnNom);
-		
-		JTextPane txtpnPrnom = new JTextPane();
-		txtpnPrnom.setText("Prénom");
-		txtpnPrnom.setEditable(false);
-		txtpnPrnom.setBounds(170, 21, 96, 20);
-		panel_1.add(txtpnPrnom);
-		
-		JTextPane txtpnFilire = new JTextPane();
-		txtpnFilire.setText("Filière");
-		txtpnFilire.setEditable(false);
-		txtpnFilire.setBounds(267, 21, 76, 20);
-		panel_1.add(txtpnFilire);
 		
 		
 		ArrayList<Eleve> listEleve= new EleveDao().getList();
@@ -138,16 +102,62 @@ public class SupprimerEtudiant {
 		int pat=0;
 		int y=0;
 		
+		JTextPane txtpnId = new JTextPane();
+		txtpnId.setText("Id");
+		txtpnId.setEditable(false);
+		panelCorps.add(txtpnId, "cell 0 0,alignx left,aligny top");
+		
+		JTextPane txtpnFilire = new JTextPane();
+		txtpnFilire.setText("Filière");
+		txtpnFilire.setEditable(false);
+		panelCorps.add(txtpnFilire, "cell 1 0,alignx left,aligny top");
+		
+		JTextPane txtpnNom = new JTextPane();
+		txtpnNom.setText("Nom");
+		txtpnNom.setEditable(false);
+		panelCorps.add(txtpnNom, "cell 2 0,alignx left,aligny top");
+		
+		JTextPane txtpnPrnom = new JTextPane();
+		txtpnPrnom.setText("Prénom");
+		txtpnPrnom.setEditable(false);
+		panelCorps.add(txtpnPrnom, "cell 3 0,alignx left,aligny top");
+		
 		for(int i=0;i<listEleve.size(); i++) {
+			
+			
+			/*
+			JTextPane txtpnvaleurId = new JTextPane();
+			txtpnvaleurId.setText(listEleve.get(i).getIdEleve() +"");
+			txtpnvaleurId.setEditable(false);
+			panelCorps.add(txtpnvaleurId);
+			
+			
+			JTextPane txtpnValeurNom = new JTextPane();
+			txtpnValeurNom.setText(listEleve.get(i).getNomEleve());
+			txtpnValeurNom.setEditable(false);
+			panelCorps.add(txtpnValeurNom);
+			*/
+			
+		}
+			
+		for(int i=0;i<13; i++) {
 			
 			y=21+pat;
 			
-			//System.out.println(listEleve.get(i).getNomEleve());
+			
+			JTextPane txtpnvaleurId = new JTextPane();
+			txtpnvaleurId.setText(listEleve.get(i).getIdEleve() +"");
+			txtpnvaleurId.setEditable(false);
+			txtpnvaleurId.setBounds(10, y, 60, 20);
+			panelCorps.add(txtpnvaleurId);
+			
+			
+			
 			JTextPane txtpnValeurNom = new JTextPane();
 			txtpnValeurNom.setText(listEleve.get(i).getNomEleve());
 			txtpnValeurNom.setEditable(false);
 			txtpnValeurNom.setBounds(72, y, 96, 20);
-			panel_1.add(txtpnValeurNom);
+			panelCorps.add(txtpnValeurNom);
 			
 			
 			
@@ -155,18 +165,18 @@ public class SupprimerEtudiant {
 			txtpnValeurPrnom.setText(listEleve.get(i).getPrenomEleve());
 			txtpnValeurPrnom.setEditable(false);
 			txtpnValeurPrnom.setBounds(170, y, 96, 20);
-			panel_1.add(txtpnValeurPrnom);
+			panelCorps.add(txtpnValeurPrnom);
 			
 			JTextPane txtpnValeurFilire = new JTextPane();
 			txtpnValeurFilire.setText(listEleve.get(i).getFiliereEleve());
 			txtpnValeurFilire.setEditable(false);
 			txtpnValeurFilire.setBounds(267, y, 76, 20);
-			panel_1.add(txtpnValeurFilire);
+			panelCorps.add(txtpnValeurFilire);
 			
 			
 			JCheckBox chckbxEtudiant = new JCheckBox("");
 			chckbxEtudiant.setBounds(345, y, 97, 23);
-			panel_1.add(chckbxEtudiant);
+			panelCorps.add(chckbxEtudiant);
 			CasesaCochees.add(chckbxEtudiant);
 			pat=pat+22;
 		}
@@ -183,42 +193,40 @@ public class SupprimerEtudiant {
 			}
 		});
 		btnSupprimer.setBackground(new Color(255, 0, 0));
-		btnSupprimer.setBounds(253, y+30, 89, 23);
-		panel_1.add(btnSupprimer);
+		btnSupprimer.setBounds(253, 255, 89, 23);
+		SupprimerEtudiant.getContentPane().add(btnSupprimer);
 		btnSupprimer.setVisible(true);
 		
-		JButton btnNewButton_1 = new JButton("Retour");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Acceuil window = new Acceuil();
 				SupprimerEtudiant.setVisible(false);
 			}
 		});
-		btnNewButton_1.setBackground(new Color(128, 128, 255));
-		btnNewButton_1.setBounds(94,  y+30, 89, 23);
-		panel_1.add(btnNewButton_1);
+		btnRetour.setBackground(new Color(128, 128, 255));
+		btnRetour.setBounds(94,  255, 89, 23);
+		SupprimerEtudiant.getContentPane().add(btnRetour);
 		
-		JScrollPane scrollpane= new JScrollPane(panel_1);
-		//panel_11.add(scrollpane);
-		//scrollpane.setBackground(new Color(255, 255, 0));
-		//scrollpane.setWheelScrollingEnabled(true);
-		//scrollpane.add(panel);
-		//scrollpane.add(panel_1);
-		//scrollpane.addMouseWheelListener(new MouseWheelListener() {
-			/*public void mouseWheelMoved(MouseWheelEvent e) {
-				//SupprimerEtudiant.setBounds(100, 100, 450, 350);
-				//panel_11.setBounds(10, 62, 414, 200);
-				//panel_1.setBounds(10, 62, 414, 200);
-				//scrollpane.setColumnHeaderView(panel);
-				
-				System.out.println("la page a bougé");
-				
-			}
-		});*/
-		scrollpane.setBounds(10, 70, 414, 188);
+		panelCorps.setLayout(new GridLayout(13, 5, 10, 0));
+
+		JScrollPane scrollpane= new JScrollPane(panelCorps);
+		//panelCorps.setLayout(new MigLayout("", "[17px][35px][28px][43px]", "[20px]"));
+
+		//JPanel paneltest = new JPanel();
+		//paneltest.setBackground(new Color(11, 0, 0));
+		//SupprimerEtudiant.getContentPane().add(paneltest);
+		//paneltest.add(panelCorps);
+		
+		
+
+		
+	    //scrollpane.setBounds(10, 65, 414, 188);
+	    //SupprimerEtudiant.getContentPane().add(scrollpane);
+	    SupprimerEtudiant.setContentPane(scrollpane);
 		//scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		SupprimerEtudiant.setContentPane(scrollpane);
+		
 		
 	
 		
@@ -230,5 +238,31 @@ public class SupprimerEtudiant {
 		
 		
 		
+	}
+
+	private void initialiserEntete() {
+		JPanel panelEntete = new JPanel();
+		panelEntete.setBackground(new Color(128, 128, 255));
+		panelEntete.setBounds(10, 11, 414, 53);
+		SupprimerEtudiant.getContentPane().add(panelEntete);
+		panelEntete.setLayout(null);
+		
+		JLabel labelESIGELEC = new JLabel("ESIGELEC");
+		labelESIGELEC.setForeground(Color.RED);
+		labelESIGELEC.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		labelESIGELEC.setBounds(10, 11, 91, 36);
+		panelEntete.add(labelESIGELEC);
+		
+		JButton btnDeconnexion = new JButton("Déconnexion");
+		btnDeconnexion.setBackground(new Color(255, 0, 0));
+		btnDeconnexion.setBounds(283, 11, 108, 23);
+		panelEntete.add(btnDeconnexion);
+	}
+
+	private void initialiserJFrame() {
+		SupprimerEtudiant = new JFrame();
+		SupprimerEtudiant.setBounds(100, 100, 450, 300);
+		SupprimerEtudiant.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		SupprimerEtudiant.getContentPane().setLayout(null);
 	}
 }

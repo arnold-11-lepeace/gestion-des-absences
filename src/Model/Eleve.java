@@ -1,5 +1,7 @@
 package Model;
 
+import java.security.PublicKey;
+
 public class Eleve {
 	
 	 /**
@@ -35,6 +37,8 @@ public class Eleve {
 		
 		public  int getIdEleve() {
 			return idEleve;
+			
+			
 		}
 
 		public void setIdEleve(int idEleve) {

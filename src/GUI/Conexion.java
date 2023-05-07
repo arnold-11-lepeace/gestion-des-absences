@@ -53,25 +53,25 @@ public class Conexion {
 		connectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		connectionFrame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(128, 128, 255));
-		panel.setBounds(10, 11, 414, 239);
-		connectionFrame.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelFeuille = new JPanel();
+		panelFeuille.setBackground(new Color(128, 128, 255));
+		panelFeuille.setBounds(10, 11, 414, 239);
+		connectionFrame.getContentPane().add(panelFeuille);
+		panelFeuille.setLayout(null);
 		
 		txtVousEtesQui = new JTextField();
 		txtVousEtesQui.setHorizontalAlignment(SwingConstants.CENTER);
 		txtVousEtesQui.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtVousEtesQui.setText("Vous etes qui?");
 		txtVousEtesQui.setBounds(162, 62, 120, 20);
-		panel.add(txtVousEtesQui);
+		panelFeuille.add(txtVousEtesQui);
 		txtVousEtesQui.setColumns(10);
 		
 		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Page de connexion");
 		lblNewJgoodiesTitle.setBounds(168, 11, 91, 14);
 		lblNewJgoodiesTitle.setBackground(new Color(255, 255, 255));
 		lblNewJgoodiesTitle.setForeground(new Color(255, 255, 255));
-		panel.add(lblNewJgoodiesTitle);
+		panelFeuille.add(lblNewJgoodiesTitle);
 		
 		JButton studentJbutton = new JButton("Etudiant");
 		studentJbutton.setBackground(new Color(255, 255, 255));
@@ -84,7 +84,7 @@ public class Conexion {
 			}
 		});
 		studentJbutton.setBounds(10, 115, 73, 23);
-		panel.add(studentJbutton);
+		panelFeuille.add(studentJbutton);
 		
 		JButton gestionJbutton = new JButton("Gestionnaire");
 		gestionJbutton.addActionListener(new ActionListener() {
@@ -95,13 +95,13 @@ public class Conexion {
 			}
 		});
 		gestionJbutton.setBounds(194, 115, 100, 23);
-		panel.add(gestionJbutton);
+		panelFeuille.add(gestionJbutton);
 		
 		JLabel lblNewLabel = new JLabel("ESIGELEC");
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel.setBounds(10, 11, 91, 36);
-		panel.add(lblNewLabel);
+		panelFeuille.add(lblNewLabel);
 		
 		JButton teacherJbutton = new JButton("Professeur");
 		teacherJbutton.addActionListener(new ActionListener() {
@@ -111,7 +111,7 @@ public class Conexion {
 		});
 		teacherJbutton.setBackground(Color.WHITE);
 		teacherJbutton.setBounds(93, 115, 91, 23);
-		panel.add(teacherJbutton);
+		panelFeuille.add(teacherJbutton);
 		
 		JButton AdministratorJbutton = new JButton("Admin");
 		AdministratorJbutton.addActionListener(new ActionListener() {
@@ -121,6 +121,6 @@ public class Conexion {
 		});
 		AdministratorJbutton.setBackground(Color.WHITE);
 		AdministratorJbutton.setBounds(304, 115, 100, 23);
-		panel.add(AdministratorJbutton);
+		panelFeuille.add(AdministratorJbutton);
 	}
 }

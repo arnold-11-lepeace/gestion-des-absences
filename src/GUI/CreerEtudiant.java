@@ -17,6 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.SwingConstants;
 
 public class CreerEtudiant {
@@ -52,6 +55,8 @@ public class CreerEtudiant {
 		initialize();
 		CreerEtudiant.setVisible(true);
 	}
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -63,27 +68,27 @@ public class CreerEtudiant {
 		CreerEtudiant.getContentPane().setLayout(null);
 		
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(128, 128, 255));
-		panel.setBounds(10, 11, 414, 53);
-		CreerEtudiant.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelEntete = new JPanel();
+		panelEntete.setBackground(new Color(128, 128, 255));
+		panelEntete.setBounds(10, 11, 414, 53);
+		CreerEtudiant.getContentPane().add(panelEntete);
+		panelEntete.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ESIGELEC");
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel.setBounds(10, 11, 91, 36);
-		panel.add(lblNewLabel);
+		panelEntete.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Déconnexion");
 		btnNewButton.setBackground(new Color(255, 0, 0));
 		btnNewButton.setBounds(283, 11, 108, 23);
-		panel.add(btnNewButton);
+		panelEntete.add(btnNewButton);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 62, 414, 188);
-		CreerEtudiant.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
+		JPanel panelformulaire = new JPanel();
+		panelformulaire.setBounds(10, 62, 414, 188);
+		CreerEtudiant.getContentPane().add(panelformulaire);
+		panelformulaire.setLayout(null);
 		
 		txtNom = new JTextField();
 		txtNom.addFocusListener(new FocusAdapter() {
@@ -104,7 +109,7 @@ public class CreerEtudiant {
 		txtNom.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		txtNom.setText("Nom");
 		txtNom.setBounds(132, 42, 201, 20);
-		panel_1.add(txtNom);
+		panelformulaire.add(txtNom);
 		txtNom.setColumns(20);
 		
 		txtPrnom = new JTextField();
@@ -127,7 +132,7 @@ public class CreerEtudiant {
 		txtPrnom.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		txtPrnom.setColumns(20);
 		txtPrnom.setBounds(132, 73, 201, 20);
-		panel_1.add(txtPrnom);
+		panelformulaire.add(txtPrnom);
 		
 		txtAdressemail = new JTextField();
 		txtAdressemail.addFocusListener(new FocusAdapter() {
@@ -149,7 +154,7 @@ public class CreerEtudiant {
 		txtAdressemail.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		txtAdressemail.setColumns(20);
 		txtAdressemail.setBounds(132, 104, 201, 20);
-		panel_1.add(txtAdressemail);
+		panelformulaire.add(txtAdressemail);
 		
 		txtFilire = new JTextField();
 		txtFilire.addFocusListener(new FocusAdapter() {
@@ -171,7 +176,7 @@ public class CreerEtudiant {
 		txtFilire.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		txtFilire.setColumns(20);
 		txtFilire.setBounds(132, 135, 201, 20);
-		panel_1.add(txtFilire);
+		panelformulaire.add(txtFilire);
 		
 		txtMessageErreur = new JTextField();
 		txtMessageErreur.setForeground(new Color(255, 0, 0));
@@ -181,7 +186,7 @@ public class CreerEtudiant {
 		txtMessageErreur.setColumns(20);
 		txtMessageErreur.setBounds(72, 11, 315, 20);
 		txtMessageErreur.setVisible(false);
-		panel_1.add(txtMessageErreur);
+		panelformulaire.add(txtMessageErreur);
 		
 		txtAjoutReussi = new JTextField();
 		txtAjoutReussi.setEditable(false);
@@ -191,31 +196,48 @@ public class CreerEtudiant {
 		txtAjoutReussi.setColumns(20);
 		txtAjoutReussi.setBounds(132, 11, 201, 20);
 		txtAjoutReussi.setVisible(false);
-		panel_1.add(txtAjoutReussi);
+		panelformulaire.add(txtAjoutReussi);
+		
+		 
 		
 		
 		EleveDao EleveDAO = new EleveDao();
 		//int returnvalue=0;
 		
 		
+		
 		JButton btnNewButton_1 = new JButton("Creer");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Eleve E1 = new Eleve( 10013345,"azertyu",txtNom.getText(),txtPrnom.getText(), 
+				Eleve E1 = new Eleve( -1,"azertyu",txtNom.getText(),txtPrnom.getText(), 
 						txtAdressemail.getText(),txtFilire.getText());
-				EleveDAO.add(E1);
-				if(txtNom.getText().equals("Nom")||txtPrnom.getText().equals("Prénom")|| txtAdressemail.getText().equals("Adressemail") || txtFilire.getText().equals("Filière"))
-				{
+				
+				int i=EleveDAO.add(E1);
+				
+				
+				if(i==0) {
 					txtMessageErreur.setVisible(true);
 					txtAjoutReussi.setVisible(false);
-					CreerEtudiant window = new CreerEtudiant();
 				}
 				else {
 					txtMessageErreur.setVisible(false);
 					txtAjoutReussi.setVisible(true);
-					//CreerEtudiant.setVisible(true);
-					CreerEtudiant window = new CreerEtudiant();
+					txtNom.setText("nom");
+					txtPrnom.setText("prénom");
+					txtAdressemail.setText("Adresseemail");
+					txtFilire.setText("filière");
+					Timer timer = new Timer();
+					
+					TimerTask tache = new TimerTask() {
+						public void run() {
+							txtAjoutReussi.setVisible(false);	
+						}
+					};
+					timer.schedule(tache, 1000);
+					
 				}
+				
+				
 				
 				
 				
@@ -223,7 +245,7 @@ public class CreerEtudiant {
 		});
 		btnNewButton_1.setBackground(new Color(128, 255, 128));
 		btnNewButton_1.setBounds(315, 166, 89, 23);
-		panel_1.add(btnNewButton_1);
+		panelformulaire.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Retour");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -235,7 +257,7 @@ public class CreerEtudiant {
 		});
 		btnNewButton_2.setBackground(new Color(128, 128, 255));
 		btnNewButton_2.setBounds(104, 166, 89, 23);
-		panel_1.add(btnNewButton_2);
+		panelformulaire.add(btnNewButton_2);
 		
 		
 		
