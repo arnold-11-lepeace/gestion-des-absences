@@ -4,7 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -24,6 +28,7 @@ public class SupEtudiant {
 
 	private JFrame frame;
 	  JScrollPane scrollpane;
+	  
 	  private void initialiserEntete() {
 			JPanel panelEntete = new JPanel();
 			panelEntete.setBackground(new Color(128, 128, 255));
@@ -64,6 +69,7 @@ public class SupEtudiant {
 	 */
 	public SupEtudiant() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -74,7 +80,24 @@ public class SupEtudiant {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initialiserEntete();
+		
+		//initialiserEntete();
+		JPanel panelEntete = new JPanel();
+		panelEntete.setBackground(new Color(128, 128, 255));
+		panelEntete.setBounds(10, 11, 414, 53);
+		//frame.getContentPane().add(panelEntete);
+		panelEntete.setLayout(null);
+		
+		JLabel labelESIGELEC = new JLabel("ESIGELEC");
+		labelESIGELEC.setForeground(Color.RED);
+		labelESIGELEC.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		labelESIGELEC.setBounds(10, 11, 91, 36);
+		panelEntete.add(labelESIGELEC);
+		
+		JButton btnDeconnexion = new JButton("Déconnexion");
+		btnDeconnexion.setBackground(new Color(255, 0, 0));
+		btnDeconnexion.setBounds(283, 11, 108, 23);
+		panelEntete.add(btnDeconnexion);
 		
 		    String counts[] = { "Id", "Nom", "Prénom", "Filière", "Action" };
 
@@ -88,32 +111,32 @@ public class SupEtudiant {
 
 
 		    
-			  JPanel p = new JPanel();
-		    p.setSize(600, 400);
+			  JPanel panelCorps = new JPanel();
+		    panelCorps.setSize(600, 400);
 		    //p.setBounds(10, 65, 414, 400);
-		    p.setLayout(new GridLayout(listEleve.size(), 5, 10, 0));
+		    panelCorps.setLayout(new GridLayout(listEleve.size(), 5, 10, 0));
 		   for (int row = 0; row < listEleve.size(); row++) {
 		      ButtonGroup bg = new ButtonGroup();
 		      for (int col = 0; col < 5; col++) {
 		        if (row == 0) {
-		          p.add(new JLabel(counts[col]));
+		          panelCorps.add(new JLabel(counts[col]));
 		        } else {
 		        	switch (col) {
 		        	case 0:
-		        		 p.add(new JLabel(""+listEleve.get(row).getIdEleve()));
+		        		 panelCorps.add(new JLabel(""+listEleve.get(row).getIdEleve()));
 		        		 break;
 		        	case 1:
-		        		p.add(new JLabel(listEleve.get(row).getNomEleve()));
+		        		panelCorps.add(new JLabel(listEleve.get(row).getNomEleve()));
 		        		break;
 		        	case 2:
-		        		p.add(new JLabel(listEleve.get(row).getPrenomEleve()));
+		        		panelCorps.add(new JLabel(listEleve.get(row).getPrenomEleve()));
 		        		break;
 		        	case 3:
-		        		p.add(new JLabel(listEleve.get(row).getFiliereEleve()));
+		        		panelCorps.add(new JLabel(listEleve.get(row).getFiliereEleve()));
 		        		break;
 		        	case 4:
 		        		JCheckBox chckbxEtudiant = new JCheckBox("");
-						p.add(chckbxEtudiant);
+						panelCorps.add(chckbxEtudiant);
 						CasesaCochees.add(chckbxEtudiant);
 						break;
 		        		
@@ -126,17 +149,67 @@ public class SupEtudiant {
 		      }
 		    }
 		    
-		   JPanel p1 = new JPanel();
-			//p1.setBackground(new Color(128, 128, 255));
-			p1.setBounds(10, 11, 414, 53);
-			frame.setContentPane(p1);
-			p1.setLayout(null);
+		   
+		   
+		   
+			
+			
+			
+			JPanel panelPieds = new JPanel();
+			panelPieds.setBounds(10, 11, 414, 53);
+			//panelPieds.setBackground(new Color(128, 128, 255));
+			panelPieds.setLayout(null);
+			
+			
+			
+			JButton btnSupprimer = new JButton("Supprimer");
+			btnSupprimer.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					for(int i=0; i<CasesaCochees.size();i++) {
+						if(CasesaCochees.get(i).isSelected()) {
+							EleveDao.delete(listEleve.get(i).getIdEleve());
+						}
+					
+					}
+				}
+			});
+			btnSupprimer.setBackground(new Color(255, 0, 0));
+			btnSupprimer.setBounds(253, 25, 89, 23);
+			//SupprimerEtudiant.getContentPane().add(btnSupprimer);
+			btnSupprimer.setVisible(true);
+			panelPieds.add(btnSupprimer);
+			
+			JButton btnRetour = new JButton("Retour");
+			btnRetour.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Acceuil window = new Acceuil();
+					frame.setVisible(false);
+				}
+			});
+			btnRetour.setBackground(new Color(128, 128, 255));
+			btnRetour.setBounds(94,  25, 89, 23);
+			//SupprimerEtudiant.getContentPane().add(btnRetour);
+			panelPieds.add(btnRetour);
+			
+			
+			JPanel panelBase = new JPanel();
+			panelBase.setLayout(new GridLayout(3, 1));
+			
 			
 		    
-		    scrollpane = new JScrollPane(p);
+		    scrollpane = new JScrollPane(panelCorps);
 		    //scrollpane.setBounds(10, 65, 414, 400);
-		    p1.add(scrollpane);
-		   // frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+		    //p1.add(scrollpane);
+		   //frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+		    
+		   panelBase.add(panelEntete);
+			panelBase.add(scrollpane, BorderLayout.CENTER);
+			panelBase.add(panelPieds);
+			//panelBase.add(panelEntete);
+			
+			frame.setContentPane(panelBase);
+			
+			
 	}
 
 }

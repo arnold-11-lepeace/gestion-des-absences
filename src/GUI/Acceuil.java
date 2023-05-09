@@ -120,7 +120,7 @@ public class Acceuil {
 		JButton btnNewButton_1_1_1_2 = new JButton("Supprimer etudiant");
 		btnNewButton_1_1_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SupprimerEtudiant window = new SupprimerEtudiant();
+				SupEtudiant window = new SupEtudiant();
 				Acceuil.setVisible(false);
 			}
 		});
