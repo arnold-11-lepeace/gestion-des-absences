@@ -28,9 +28,9 @@ import java.awt.ScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Acceuil {
+public class AcceuilGestionnaire {
 
-	private JFrame Acceuil;
+	private JFrame PageAcceuilGestionnaire;
 
 	/**
 	 * Launch the application.
@@ -39,8 +39,8 @@ public class Acceuil {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Acceuil window = new Acceuil();
-					window.Acceuil.setVisible(true);
+					AcceuilGestionnaire window = new AcceuilGestionnaire();
+					window.PageAcceuilGestionnaire.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,24 +51,24 @@ public class Acceuil {
 	/**
 	 * Create the application.
 	 */
-	public Acceuil() {
+	public AcceuilGestionnaire() {
 		initialize();
-		Acceuil.setVisible(true);
+		PageAcceuilGestionnaire.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Acceuil = new JFrame();
-		Acceuil.setBounds(100, 100, 450, 300);
-		Acceuil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Acceuil.getContentPane().setLayout(null);
+		PageAcceuilGestionnaire = new JFrame();
+		PageAcceuilGestionnaire.setBounds(100, 100, 450, 300);
+		PageAcceuilGestionnaire.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		PageAcceuilGestionnaire.getContentPane().setLayout(null);
 		
 		JPanel panelEntete = new JPanel();
 		panelEntete.setBackground(new Color(128, 128, 255));
 		panelEntete.setBounds(10, 11, 414, 53);
-		Acceuil.getContentPane().add(panelEntete);
+		PageAcceuilGestionnaire.getContentPane().add(panelEntete);
 		panelEntete.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ESIGELEC");
@@ -84,7 +84,7 @@ public class Acceuil {
 		
 		JPanel panelCorps = new JPanel();
 		panelCorps.setBounds(10, 75, 414, 175);
-		Acceuil.getContentPane().add(panelCorps);
+		PageAcceuilGestionnaire.getContentPane().add(panelCorps);
 		panelCorps.setLayout(null);
 		
 		
@@ -94,64 +94,64 @@ public class Acceuil {
 		panelCorps.add(panelFonctionnaliteEtudiant);
 		panelFonctionnaliteEtudiant.setVisible(false);
 		
-		JButton btnNewButton_1_1_1_1 = new JButton("Creer etudiant");
-		btnNewButton_1_1_1_1.addActionListener(new ActionListener() {
+		JButton btnCreerEtudiant = new JButton("Creer etudiant");
+		btnCreerEtudiant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreerEtudiant window = new CreerEtudiant();
-				Acceuil.setVisible(false);
+				PageAcceuilGestionnaire.setVisible(false);
 			}
 		});
-		btnNewButton_1_1_1_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1_1_1_1.setBackground(new Color(255, 255, 255));
-		panelFonctionnaliteEtudiant.add(btnNewButton_1_1_1_1);
+		btnCreerEtudiant.setForeground(new Color(0, 0, 0));
+		btnCreerEtudiant.setBackground(new Color(255, 255, 255));
+		panelFonctionnaliteEtudiant.add(btnCreerEtudiant);
 		
-		JButton btnNewButton_1_1_1_4 = new JButton("Creer un groupe");
-		btnNewButton_1_1_1_4.setBackground(new Color(255, 255, 255));
-		btnNewButton_1_1_1_4.addActionListener(new ActionListener() {
+		JButton btnCreerGroupe = new JButton("Creer un groupe");
+		btnCreerGroupe.setBackground(new Color(255, 255, 255));
+		btnCreerGroupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panelFonctionnaliteEtudiant.add(btnNewButton_1_1_1_4);
+		panelFonctionnaliteEtudiant.add(btnCreerGroupe);
 		
-		JButton btnNewButton_1_1_1_3 = new JButton("Modifier Etudiant");
-		btnNewButton_1_1_1_3.setBackground(new Color(255, 255, 255));
-		panelFonctionnaliteEtudiant.add(btnNewButton_1_1_1_3);
+		JButton btnModifierEtudiant = new JButton("Modifier Etudiant");
+		btnModifierEtudiant.setBackground(new Color(255, 255, 255));
+		panelFonctionnaliteEtudiant.add(btnModifierEtudiant);
 		
-		JButton btnNewButton_1_1_1_2 = new JButton("Supprimer etudiant");
-		btnNewButton_1_1_1_2.addActionListener(new ActionListener() {
+		JButton btnSupprimerEtudiant = new JButton("Supprimer etudiant");
+		btnSupprimerEtudiant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SupEtudiant window = new SupEtudiant();
-				Acceuil.setVisible(false);
+				PageAcceuilGestionnaire.setVisible(false);
 			}
 		});
-		btnNewButton_1_1_1_2.setBackground(new Color(255, 255, 255));
-		panelFonctionnaliteEtudiant.add(btnNewButton_1_1_1_2);
+		btnSupprimerEtudiant.setBackground(new Color(255, 255, 255));
+		panelFonctionnaliteEtudiant.add(btnSupprimerEtudiant);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 414, 22);
 		panelCorps.add(menuBar);
 		
-		JButton btnNewButton_1_1_1 = new JButton("Etudiant");
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+		JButton btnEtudiant = new JButton("Etudiant");
+		btnEtudiant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
 				panelFonctionnaliteEtudiant.setVisible(true);
 			}
 		});
-		menuBar.add(btnNewButton_1_1_1);
+		menuBar.add(btnEtudiant);
 		
-		JButton btnNewButton_1_1 = new JButton("Enseignant");
-		menuBar.add(btnNewButton_1_1);
+		JButton btnEnseignant = new JButton("Enseignant");
+		menuBar.add(btnEnseignant);
 		
-		JButton btnNewButton_1_2 = new JButton("Planning");
-		menuBar.add(btnNewButton_1_2);
+		JButton btnPlanning = new JButton("Planning");
+		menuBar.add(btnPlanning);
 		
-		JButton btnNewButton_1_3 = new JButton("Absence");
-		menuBar.add(btnNewButton_1_3);
+		JButton btnAbsence = new JButton("Absence");
+		menuBar.add(btnAbsence);
 		
-		JButton btnNewButton_1_5 = new JButton("Messages");
-		menuBar.add(btnNewButton_1_5);
+		JButton btnMessages = new JButton("Messages");
+		menuBar.add(btnMessages);
 		
 		
 	}

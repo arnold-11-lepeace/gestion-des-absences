@@ -182,7 +182,7 @@ public class SupEtudiant {
 			JButton btnRetour = new JButton("Retour");
 			btnRetour.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Acceuil window = new Acceuil();
+					AcceuilGestionnaire window = new AcceuilGestionnaire();
 					frame.setVisible(false);
 				}
 			});

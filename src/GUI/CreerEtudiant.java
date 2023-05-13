@@ -169,6 +169,7 @@ public class CreerEtudiant {
 			public void focusLost(FocusEvent e) {
 				if(txtFilire.getText().equals("")) {
 					txtFilire.setText("Filière");
+					
 				}
 			}
 		});
@@ -250,7 +251,7 @@ public class CreerEtudiant {
 		JButton btnNewButton_2 = new JButton("Retour");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Acceuil window = new Acceuil();
+				AcceuilGestionnaire window = new AcceuilGestionnaire();
 				CreerEtudiant.setVisible(false);
 				
 			}

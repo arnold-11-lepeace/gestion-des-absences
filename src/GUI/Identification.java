@@ -113,6 +113,7 @@ public class Identification extends Conexion {
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				// Se connecte à la page d'acceuil de l'étudiant
 				if(role.length()==8) {
 					System.out.println(role);
 					EleveDao elevDAO = new EleveDao();
@@ -120,7 +121,7 @@ public class Identification extends Conexion {
 					 connectedEleve = elevDAO.login(identifiant, mdpField.getText());
 
 						if(  connectedEleve!=null )  {
-							Acceuil window = new Acceuil();
+							AcceuilEtudiant window = new AcceuilEtudiant();
 							identificationFrame.setVisible(false);
 							System.out.println("identification reussie");
 							System.out.println(mdpField.getText());
@@ -132,7 +133,7 @@ public class Identification extends Conexion {
 						}
 					
 						
-					
+						// Se connecte à la page d'acceuil du gestionnaire
 					
 				}else if (role.length()==12) {
 					System.out.println(role);
@@ -140,7 +141,7 @@ public class Identification extends Conexion {
 					int identifiant = Integer.parseInt(idField.getText());
 					 connectedGestionnaire= GestionnaireDAO.loginGestionnaire(identifiant, mdpField.getText());
 					 if(  connectedGestionnaire!=null )  {
-							Acceuil window = new Acceuil();
+							AcceuilGestionnaire window = new AcceuilGestionnaire();
 							identificationFrame.setVisible(false);
 							System.out.println("identification reussie");
 							System.out.println(mdpField.getText());
