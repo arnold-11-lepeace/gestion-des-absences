@@ -89,7 +89,7 @@ public class AcceuilGestionnaire {
 		
 		
 		JPanel panelFonctionnaliteEtudiant = new JPanel();
-		panelFonctionnaliteEtudiant.setBackground(new Color(255, 255, 255));
+		panelFonctionnaliteEtudiant.setBackground(new Color(192, 192, 192));
 		panelFonctionnaliteEtudiant.setBounds(10, 37, 144, 127);
 		panelCorps.add(panelFonctionnaliteEtudiant);
 		panelFonctionnaliteEtudiant.setVisible(false);
@@ -103,7 +103,7 @@ public class AcceuilGestionnaire {
 		});
 		btnCreerEtudiant.setForeground(new Color(0, 0, 0));
 		btnCreerEtudiant.setBackground(new Color(255, 255, 255));
-		panelFonctionnaliteEtudiant.add(btnCreerEtudiant);
+		
 		
 		JButton btnCreerGroupe = new JButton("Creer un groupe");
 		btnCreerGroupe.setBackground(new Color(255, 255, 255));
@@ -111,11 +111,11 @@ public class AcceuilGestionnaire {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panelFonctionnaliteEtudiant.add(btnCreerGroupe);
+		
 		
 		JButton btnModifierEtudiant = new JButton("Modifier Etudiant");
 		btnModifierEtudiant.setBackground(new Color(255, 255, 255));
-		panelFonctionnaliteEtudiant.add(btnModifierEtudiant);
+		
 		
 		JButton btnSupprimerEtudiant = new JButton("Supprimer etudiant");
 		btnSupprimerEtudiant.addActionListener(new ActionListener() {
@@ -125,7 +125,24 @@ public class AcceuilGestionnaire {
 			}
 		});
 		btnSupprimerEtudiant.setBackground(new Color(255, 255, 255));
-		panelFonctionnaliteEtudiant.add(btnSupprimerEtudiant);
+		
+		
+		
+		JButton btnTraiterjustificatif = new JButton("Traiter Justifcatifs");
+		btnTraiterjustificatif.setBackground(new Color(255, 255, 255));
+		btnTraiterjustificatif.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
+		JButton btnListeAbsences = new JButton("Liste absences");
+		btnListeAbsences.setBackground(new Color(255, 255, 255));
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 414, 22);
@@ -136,6 +153,10 @@ public class AcceuilGestionnaire {
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				panelFonctionnaliteEtudiant.add(btnCreerEtudiant);
+				panelFonctionnaliteEtudiant.add(btnCreerGroupe);
+				panelFonctionnaliteEtudiant.add(btnModifierEtudiant);
+				panelFonctionnaliteEtudiant.add(btnSupprimerEtudiant);
 				panelFonctionnaliteEtudiant.setVisible(true);
 			}
 		});
@@ -148,10 +169,25 @@ public class AcceuilGestionnaire {
 		menuBar.add(btnPlanning);
 		
 		JButton btnAbsence = new JButton("Absence");
+		btnAbsence.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelFonctionnaliteEtudiant.add(btnListeAbsences);
+				panelFonctionnaliteEtudiant.add(btnTraiterjustificatif);
+				panelFonctionnaliteEtudiant.setVisible(true);
+				
+			}
+		});
 		menuBar.add(btnAbsence);
 		
 		JButton btnMessages = new JButton("Messages");
 		menuBar.add(btnMessages);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(246, 37,144, 127);
+		panelCorps.add(panel);
+		
+		
+		//panel.add(btnListeAbsences);
 		
 		
 	}

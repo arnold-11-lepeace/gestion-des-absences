@@ -12,22 +12,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileSystemView;
+
+import DAO.PeriodeAbsenceDAO;
+import Model.PeriodeAbsence;
+
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.File;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
-public class PageDepotJustificatif {
+import java.text.SimpleDateFormat;
+import com.toedter.calendar.JDateChooser;
+
+public class PageDepotJustificatif extends Identification {
 
 	private JFrame DepotJustificatif;
 	private JTextField txtJeSeraiAbsent;
-	private JTextField txtDateDebutAbs;
 	private JTextField txtAu;
-	private JTextField txtDateFinAbs;
 	private JTextField txtVeuillezDposerVotre;
+	static  File selectedFile;
+	private JTextField txtAjoutEffectu;
 
 	/**
 	 * Launch the application.
@@ -93,56 +103,14 @@ public class PageDepotJustificatif {
 		panelCorps.add(txtJeSeraiAbsent);
 		txtJeSeraiAbsent.setColumns(10);
 		
-		txtDateDebutAbs = new JTextField();
-		txtDateDebutAbs.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(txtDateDebutAbs.getText().equals("DD/MM/YEAR")) {
-					txtDateDebutAbs.setText("");
-				}
-				
-				/*else {
-					if(txtDateDebutAbs.getText().length()==2) {
-						txtDateDebutAbs.setText(txtDateDebutAbs.getText()+"/");
-					}
-					else if(txtDateDebutAbs.getText().length()==2) {
-						txtDateDebutAbs.setText(txtDateDebutAbs.getText()+"/");
-					}
-		        	}*/
-					
-					
-				
-				
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(txtDateDebutAbs.getText().equals("")) {
-					txtDateDebutAbs.setText("DD/MM/YEAR");
-					
-				}
-			}
-		});
-		txtDateDebutAbs.setText("DD/MM/YEAR");
-		txtDateDebutAbs.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		txtDateDebutAbs.setColumns(10);
-		txtDateDebutAbs.setBounds(159, 11, 85, 20);
-		panelCorps.add(txtDateDebutAbs);
-		
 		txtAu = new JTextField();
 		txtAu.setBackground(new Color(255, 255, 255));
 		txtAu.setEditable(false);
 		txtAu.setText("au");
 		txtAu.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtAu.setColumns(10);
-		txtAu.setBounds(256, 11, 21, 20);
+		txtAu.setBounds(260, 11, 21, 20);
 		panelCorps.add(txtAu);
-		
-		txtDateFinAbs = new JTextField();
-		txtDateFinAbs.setText("DD/MM/YEAR");
-		txtDateFinAbs.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		txtDateFinAbs.setColumns(10);
-		txtDateFinAbs.setBounds(289, 11, 85, 20);
-		panelCorps.add(txtDateFinAbs);
 		
 		txtVeuillezDposerVotre = new JTextField();
 		txtVeuillezDposerVotre.setText("Veuillez déposer votre justificatif ici");
@@ -152,21 +120,29 @@ public class PageDepotJustificatif {
 		txtVeuillezDposerVotre.setBounds(115, 42, 205, 20);
 		panelCorps.add(txtVeuillezDposerVotre);
 		
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBackground(new Color(255, 0, 0));
-		btnAnnuler.setBounds(73, 141, 89, 23);
-		panelCorps.add(btnAnnuler);
+		JDateChooser dateFinPeriode = new JDateChooser();
+		dateFinPeriode.setBounds(303, 11, 101, 20);
+		panelCorps.add(dateFinPeriode);
 		
-		JButton btnValider = new JButton("Valider");
-		btnValider.setBackground(new Color(0, 255, 128));
-		btnValider.setBounds(245, 141, 89, 23);
-		panelCorps.add(btnValider);
+		JDateChooser dateDebutPeriode = new JDateChooser();
+		dateDebutPeriode.setBounds(149, 11, 101, 20);
+		panelCorps.add(dateDebutPeriode);
+		
 		
 		JPanel panelDedepot = new JPanel();
 		panelDedepot.setBackground(new Color(255, 255, 255));
-		panelDedepot.setBounds(115, 68, 205, 62);
+		panelDedepot.setBounds(115, 68, 205, 78);
 		panelCorps.add(panelDedepot);
 		panelDedepot.setLayout(null);
+		
+		
+		txtAjoutEffectu = new JTextField();
+		txtAjoutEffectu.setEditable(false);
+		txtAjoutEffectu.setBounds(10, 58, 185, 20);
+		panelDedepot.add(txtAjoutEffectu);
+		txtAjoutEffectu.setText("Ajout effectué");
+		txtAjoutEffectu.setColumns(10);
+		txtAjoutEffectu.setVisible(false);
 		
 		JButton btnDepotJustificatif = new JButton("");
 		btnDepotJustificatif.addActionListener(new ActionListener() {
@@ -183,6 +159,10 @@ public class PageDepotJustificatif {
 				    // int res = choose.showSaveDialog(null);
 				    if (res == JFileChooser.APPROVE_OPTION) {
 				      File file = choose.getSelectedFile();
+				      selectedFile= file;
+				      txtAjoutEffectu.setVisible(true);
+				      txtAjoutEffectu.setForeground(new Color(0, 255, 128));
+				      //txtAjoutEffectu
 				      System.out.println(file.getAbsolutePath());
 				    }
 				  
@@ -191,5 +171,47 @@ public class PageDepotJustificatif {
 		btnDepotJustificatif.setIcon(new ImageIcon("C:\\Users\\ONANA Arnold\\eclipse-workspace\\Gestion absences\\images\\flèche déposer.png"));
 		btnDepotJustificatif.setBounds(48, 11, 91, 40);
 		panelDedepot.add(btnDepotJustificatif);
+		
+		
+		
+		
+		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtAjoutEffectu.setForeground(new Color(255, 0, 0));
+				txtAjoutEffectu.setVisible(true);
+				txtAjoutEffectu.setText("Votre sélection a été annulée");
+				selectedFile=null;
+				
+			}
+		});
+		btnAnnuler.setBackground(new Color(255, 0, 0));
+		btnAnnuler.setBounds(73, 157, 89, 23);
+		panelCorps.add(btnAnnuler);
+		
+		
+		
+		
+		
+		PeriodeAbsenceDAO periodeAbsenceDao= new PeriodeAbsenceDAO();
+		
+		
+		
+		JButton btnValider = new JButton("Valider");
+		btnValider.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dateDeDebut = (((JTextField) dateDebutPeriode.getDateEditor().getUiComponent()).getText());
+				String datedeFin = (((JTextField) dateFinPeriode.getDateEditor().getUiComponent()).getText());
+				
+				PeriodeAbsence p1= new PeriodeAbsence(-1,dateDeDebut, datedeFin, "physique", selectedFile, connectedEleveId);
+				periodeAbsenceDao.add(p1);
+			}
+			
+		});
+		btnValider.setBackground(new Color(0, 255, 128));
+		btnValider.setBounds(245, 157, 89, 23);
+		panelCorps.add(btnValider);
+		
+		
 	}
 }

@@ -227,6 +227,8 @@ public class EleveDao extends ConnectionDAO {
 		}
 		return returnValue;
 	}
+	
+	
 
 	public static void main(String[] args) throws SQLException {
 		int returnValue;
@@ -243,9 +245,9 @@ public class EleveDao extends ConnectionDAO {
 		// returnValue=EleveDAO.add(E1);
 		// returnValue=EleveDAO.add(E2);
 		// returnValue=EleveDAO.add(E3);
-		returnValue = EleveDAO.add(E4);
+		//returnValue = EleveDAO.add(E4);
 		System.out.println("Ajout éffectué");
-		System.out.println(returnValue + " eleve ajoute");
+		//System.out.println(returnValue + " eleve ajoute");
 		// test de la methode get
 		// Eleve E = EleveDAO.get(E1);
 		// appel implicite de la methode toString de la classe Object (a eviter)

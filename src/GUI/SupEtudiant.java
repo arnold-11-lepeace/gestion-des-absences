@@ -157,7 +157,6 @@ public class SupEtudiant {
 			
 			JPanel panelPieds = new JPanel();
 			panelPieds.setBounds(10, 11, 414, 53);
-			//panelPieds.setBackground(new Color(128, 128, 255));
 			panelPieds.setLayout(null);
 			
 			
@@ -168,6 +167,7 @@ public class SupEtudiant {
 					for(int i=0; i<CasesaCochees.size();i++) {
 						if(CasesaCochees.get(i).isSelected()) {
 							EleveDao.delete(listEleve.get(i).getIdEleve());
+							
 						}
 					
 					}
@@ -175,7 +175,6 @@ public class SupEtudiant {
 			});
 			btnSupprimer.setBackground(new Color(255, 0, 0));
 			btnSupprimer.setBounds(253, 25, 89, 23);
-			//SupprimerEtudiant.getContentPane().add(btnSupprimer);
 			btnSupprimer.setVisible(true);
 			panelPieds.add(btnSupprimer);
 			
@@ -188,7 +187,6 @@ public class SupEtudiant {
 			});
 			btnRetour.setBackground(new Color(128, 128, 255));
 			btnRetour.setBounds(94,  25, 89, 23);
-			//SupprimerEtudiant.getContentPane().add(btnRetour);
 			panelPieds.add(btnRetour);
 			
 			
@@ -198,14 +196,12 @@ public class SupEtudiant {
 			
 		    
 		    scrollpane = new JScrollPane(panelCorps);
-		    //scrollpane.setBounds(10, 65, 414, 400);
-		    //p1.add(scrollpane);
-		   //frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+		    
 		    
 		   panelBase.add(panelEntete);
 			panelBase.add(scrollpane, BorderLayout.CENTER);
 			panelBase.add(panelPieds);
-			//panelBase.add(panelEntete);
+			
 			
 			frame.setContentPane(panelBase);
 			

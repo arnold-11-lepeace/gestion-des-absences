@@ -63,6 +63,8 @@ public class MatiereDAO extends ConnectionDAO {
 		}
 		return returnValue;
 	}
+	
+	
 	public static void main(String[] args) throws SQLException {
 		int returnValue;
 		float t1[]= {2, 25, 23};

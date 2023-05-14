@@ -19,38 +19,51 @@ public class PeriodeAbsence {
 	 * @param fichierJustificatif
 	 * @param etat
 	 */
-	private Date dateDebutPeriodeAbsence;
-	private Date dateFinPeriodeAbsence;
+	private int id;
+	private String dateDebutPeriodeAbsence;
+	private String dateFinPeriodeAbsence;
 	private String typeAbsence;
 	private File fichierJustificatif;
 	private int etat;
 	
 	
-		public PeriodeAbsence(Date dateDebutPeriodeAbsence, Date dateFinPeriodeAbsence, String typeAbsence,
+		public PeriodeAbsence(int id,String dateDeDebut, String datedeFin, String typeAbsence,
 				File fichierJustificatif, int etat) {
 			super();
-			this.dateDebutPeriodeAbsence = dateDebutPeriodeAbsence;
-			this.dateFinPeriodeAbsence = dateFinPeriodeAbsence;
+			this.id=id;
+			this.dateDebutPeriodeAbsence = dateDeDebut;
+			this.dateFinPeriodeAbsence = datedeFin;
 			this.typeAbsence = typeAbsence;
 			this.fichierJustificatif = fichierJustificatif;
 			this.etat = etat;
 		}
 	
-		public Date getDateDebutPeriodeAbsence() {
+		
+		public int getId() {
+			return id;
+		}
+
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+
+		public String getDateDebutPeriodeAbsence() {
 			return dateDebutPeriodeAbsence;
 		}
 		
-		public void setDateDebutPeriodeAbsence(Date dateDebutPeriodeAbsence) {
+		public void setDateDebutPeriodeAbsence(String dateDebutPeriodeAbsence) {
 			this.dateDebutPeriodeAbsence = dateDebutPeriodeAbsence;
 		}
 		
 		
-		public Date getDateFinPeriodeAbsence() {
+		public String getDateFinPeriodeAbsence() {
 			return dateFinPeriodeAbsence;
 		}
 		
 		
-		public void setDateFinPeriodeAbsence(Date dateFinPeriodeAbsence) {
+		public void setDateFinPeriodeAbsence(String dateFinPeriodeAbsence) {
 			this.dateFinPeriodeAbsence = dateFinPeriodeAbsence;
 		}
 		

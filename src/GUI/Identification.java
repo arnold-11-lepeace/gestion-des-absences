@@ -27,9 +27,9 @@ public class Identification extends Conexion {
 	private JFrame identificationFrame;
 	private JTextField idField;
 	private JPasswordField mdpField;
-
 	private Eleve connectedEleve;
 	private Gestionnaire connectedGestionnaire;
+	static int connectedEleveId;
 	
 	/**
 	 * Launch the application.
@@ -125,6 +125,7 @@ public class Identification extends Conexion {
 							identificationFrame.setVisible(false);
 							System.out.println("identification reussie");
 							System.out.println(mdpField.getText());
+							connectedEleveId=identifiant;
 					}
 						else {
 							System.out.println("identification échouée");
