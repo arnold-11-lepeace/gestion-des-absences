@@ -22,6 +22,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,7 +44,8 @@ public class PageDepotJustificatif extends Identification {
 	private JTextField txtJeSeraiAbsent;
 	private JTextField txtAu;
 	private JTextField txtVeuillezDposerVotre;
-	static  File selectedFile;
+	static  String selectedFileName;
+	static  String selectedFileAccessPath;
 	private JTextField txtAjoutEffectu;
 
 	/**
@@ -152,6 +161,7 @@ public class PageDepotJustificatif extends Identification {
 				        FileSystemView
 				        .getFileSystemView()
 				        .getHomeDirectory()
+				        
 				    );
 				    // Ouvrez le fichier
 				    int res = choose.showOpenDialog(null);
@@ -159,10 +169,14 @@ public class PageDepotJustificatif extends Identification {
 				    // int res = choose.showSaveDialog(null);
 				    if (res == JFileChooser.APPROVE_OPTION) {
 				      File file = choose.getSelectedFile();
-				      selectedFile= file;
+				      selectedFileName= choose.getName(file);
+				      System.out.println(selectedFileName);
+				      
+				      
 				      txtAjoutEffectu.setVisible(true);
 				      txtAjoutEffectu.setForeground(new Color(0, 255, 128));
 				      //txtAjoutEffectu
+				      selectedFileAccessPath=file.getAbsolutePath();
 				      System.out.println(file.getAbsolutePath());
 				    }
 				  
@@ -181,7 +195,7 @@ public class PageDepotJustificatif extends Identification {
 				txtAjoutEffectu.setForeground(new Color(255, 0, 0));
 				txtAjoutEffectu.setVisible(true);
 				txtAjoutEffectu.setText("Votre sélection a été annulée");
-				selectedFile=null;
+				selectedFileName=null;
 				
 			}
 		});
@@ -203,8 +217,40 @@ public class PageDepotJustificatif extends Identification {
 				String dateDeDebut = (((JTextField) dateDebutPeriode.getDateEditor().getUiComponent()).getText());
 				String datedeFin = (((JTextField) dateFinPeriode.getDateEditor().getUiComponent()).getText());
 				
-				PeriodeAbsence p1= new PeriodeAbsence(-1,dateDeDebut, datedeFin, "physique", selectedFile, connectedEleveId);
-				periodeAbsenceDao.add(p1);
+				PeriodeAbsence p1= new PeriodeAbsence(-1,dateDeDebut, datedeFin, "physique", selectedFileName, connectedEleveId);
+				periodeAbsenceDao.add(p1,connectedEleveId);
+
+			    File src = new File(selectedFileAccessPath); 
+			    File dest = new File("C:\\Users\\ONANA Arnold\\eclipse-workspace\\Gestion absences\\justificatif d'absences\\"+selectedFileName); 
+			    InputStream is = null;
+			    OutputStream os = null;
+			  
+			   try {
+			        is = new FileInputStream(src);
+			        os = new FileOutputStream(dest);
+			        byte[] buffer = new byte[1024];
+			        int len;
+			        while ((len = is.read(buffer)) > 0) {
+			            os.write(buffer, 0, len);
+			        }
+			        is.close();
+			        os.close();
+			    }
+			    catch(IOException a){
+			        a.printStackTrace();
+			    }
+			   /* Path sourceFile = Path.of("selectedFileAccessPath");
+		        Path destinationFile = Path.of("C:\\\\Users\\\\ONANA Arnold\\\\eclipse-workspace\\\\Gestion absences\\\\justificatif d'absences");
+
+		        try {
+		            Files.copy(sourceFile, destinationFile, StandardCopyOption.REPLACE_EXISTING);
+		            System.out.println("Fichier copié avec succès !");
+		        } catch (IOException e1) {
+		            System.err.println("Erreur lors de la copie du fichier : " + e1.getMessage());
+		        }*/
+		        
+		        
+		        
 			}
 			
 		});

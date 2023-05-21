@@ -84,8 +84,9 @@ public class ListeJustificatifs {
 				    
 					ArrayList<PeriodeAbsence> listJustificaifEleve= new PeriodeAbsenceDAO().getList();
 					ArrayList<JCheckBox> CasesaCochees= new ArrayList<>();
+					ArrayList<JButton> listBtnNomFichier = new ArrayList<>();
 					
-					  JRadioButton form[][] = new JRadioButton[listJustificaifEleve.size()][5];
+					  
 					  
 					  
 					  
@@ -98,7 +99,7 @@ public class ListeJustificatifs {
 				    
 				    
 				   for (int row = 0; row < listJustificaifEleve.size(); row++) {
-				      ButtonGroup bg = new ButtonGroup();
+				      
 				      for (int col = 0; col < 5; col++) {
 				        if (row == 0) {
 				          panelCorps.add(new JLabel(counts[col]));
@@ -108,7 +109,10 @@ public class ListeJustificatifs {
 				        		 panelCorps.add(new JLabel(""+listJustificaifEleve.get(row).getId()));
 				        		 break;
 				        	case 1:
-				        		panelCorps.add(new JLabel(""+listJustificaifEleve.get(row).getFichierJustificatif()));
+				        		JButton btnNomFichier=new JButton (""+listJustificaifEleve.get(row).getNomFichierJustificatif());
+				        		panelCorps.add(btnNomFichier);
+				        		listBtnNomFichier.add(btnNomFichier);
+				        		
 				        		break;
 				        	case 2:
 				        		panelCorps.add(new JLabel(listJustificaifEleve.get(row).getDateDebutPeriodeAbsence()));
@@ -132,6 +136,43 @@ public class ListeJustificatifs {
 				    }
 				    
 				   
+				   for(int i=0;i<listBtnNomFichier.size();i++) {
+					   String text = listBtnNomFichier.get(i).getText();
+					   listBtnNomFichier.get(i).addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							/*
+							// TODO Auto-generated method stub
+							   try 
+							    {
+							        //Créer une instance PdfReader.
+							        PdfReader pdf = new PdfReader("C:\\my.pdf");  
+							   
+							        //Récupérer le nombre de pages en pdf.
+							        int nbrPages = pdf.getNumberOfPages(); 
+							   
+							        //Itérer le pdf à travers les pages.
+							        for(int i=1; i <= nbrPages; i++) 
+							        { 
+							            //Extraire le contenu de la page à l'aide de PdfTextExtractor.
+							            String content = PdfTextExtractor.getTextFromPage(pdf, i);
+							   
+							            //Afficher le contenu de la page sur la console.
+							            System.out.println("Contenu du page : " + content);
+							        }
+							   
+							        //Fermez le PdfReader.
+							        pdf.close();
+							    
+							    } catch (Exception ex) {
+							        ex.printStackTrace();
+							    }
+							*/
+						}
+					});
+						   
+					   
+				   }
 				   
 				   
 					

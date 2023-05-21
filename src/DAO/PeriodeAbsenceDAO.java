@@ -43,7 +43,7 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 	 * 
 	 */
 
-	public int add(PeriodeAbsence periode) {
+	public int add(PeriodeAbsence periode, int idEtudiant) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int returnValue = 0;
@@ -54,16 +54,15 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 			// preparation de l'instruction SQL, chaque ? represente une valeur
 			// a communiquer dans l'insertion.
 			// les getters permettent de recuperer les valeurs des attributs
-			ps = con.prepareStatement("INSERT INTO PERIODEABSENCE (DATEDEBUT,DATEFIN,TYPE,ETAT,FICHIERJUSTIFICATIF,idetudiantp) VALUES ( ?, ?, ?, ?, ?,?)");
+			ps = con.prepareStatement("INSERT INTO PERIODEABSENCE (DATEDEBUT,DATEFIN,TYPE,ETAT,NOMFICHIERJUSTIFICATIF,idetudiantp) VALUES ( ?, ?, ?, ?, ?,?)");
 			ps.setString(1,  periode.getDateDebutPeriodeAbsence());
 			ps.setString(2,   periode.getDateFinPeriodeAbsence());
 			ps.setString(3, "physique");
 			ps.setInt(4, 0);
-			FileReader reader = new FileReader(periode.getFichierJustificatif());
-			ps.setCharacterStream(5,reader );
-			ps.setInt(6,10 );
-			//ps.setInt(7, 10);
-			System.out.println("C'est arrivé");
+			ps.setString(5,periode.getNomFichierJustificatif() );
+			ps.setInt(6,idEtudiant );
+			
+			//System.out.println("C'est arrivé");
 
 			// Execution de la requete
 			returnValue = ps.executeUpdate();
@@ -143,13 +142,13 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 		// connexion a la base de donnees
 		try {
 			con = DriverManager.getConnection(URL,LOGIN , PASS);
-			ps = con.prepareStatement("SELECT * FROM PERIODEABSENCE");
+			ps = con.prepareStatement("SELECT * FROM PERIODEABSENCE WHERE ETAT=0");
 			// on execute la requete
 			rs = ps.executeQuery();
 			// on parcourt les lignes du resultat
 			while (rs.next()) {
 				returnValue.add(new PeriodeAbsence(rs.getInt(1),""+rs.getString(2), ""+rs.getDate(3), rs.getString(4),
-					null, rs.getInt(5)));
+					rs.getString(7), rs.getInt(5)));
 			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -195,6 +194,8 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 	    DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
 	        DateFormat.SHORT,
 	        DateFormat.SHORT);
+	    
+	    
 	    ArrayList<PeriodeAbsence> listEleve = new PeriodeAbsenceDAO().getList();
 		// listEleve
 		for (int i = 0; i < listEleve.size(); i++) {

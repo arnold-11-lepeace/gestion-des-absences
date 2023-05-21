@@ -135,6 +135,7 @@ public class AcceuilGestionnaire {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				ListeJustificatifs window= new ListeJustificatifs();
 				
 			}
 		});

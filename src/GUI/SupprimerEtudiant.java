@@ -176,8 +176,8 @@ public class SupprimerEtudiant {
 			
 			JCheckBox chckbxEtudiant = new JCheckBox("");
 			chckbxEtudiant.setBounds(345, y, 97, 23);
-			panelCorps.add(chckbxEtudiant);
-			CasesaCochees.add(chckbxEtudiant);
+			//panelCorps.add(chckbxEtudiant);
+			//CasesaCochees.add(chckbxEtudiant);
 			pat=pat+22;
 		}
 		
@@ -208,7 +208,7 @@ public class SupprimerEtudiant {
 		btnRetour.setBounds(94,  255, 89, 23);
 		SupprimerEtudiant.getContentPane().add(btnRetour);
 		
-		panelCorps.setLayout(new GridLayout(13, 5, 10, 0));
+		panelCorps.setLayout(new GridLayout(13, 4, 10, 0));
 
 		JScrollPane scrollpane= new JScrollPane(panelCorps);
 		//panelCorps.setLayout(new MigLayout("", "[17px][35px][28px][43px]", "[20px]"));

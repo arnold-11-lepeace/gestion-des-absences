@@ -3,8 +3,6 @@
  */
 package Model;
 
-import java.io.File;
-import java.util.Date;
 
 /**
  * @author ONANA Arnold
@@ -16,25 +14,25 @@ public class PeriodeAbsence {
 	 * @param dateDebutPeriodeAbsence
 	 * @param dateFinPeriodeAbsence
 	 * @param typeAbsence
-	 * @param fichierJustificatif
+	 * @param nomFichierJustificatif
 	 * @param etat
 	 */
 	private int id;
 	private String dateDebutPeriodeAbsence;
 	private String dateFinPeriodeAbsence;
 	private String typeAbsence;
-	private File fichierJustificatif;
+	private String nomFichierJustificatif;
 	private int etat;
 	
 	
 		public PeriodeAbsence(int id,String dateDeDebut, String datedeFin, String typeAbsence,
-				File fichierJustificatif, int etat) {
+				String nomFichierJustificatif, int etat) {
 			super();
 			this.id=id;
 			this.dateDebutPeriodeAbsence = dateDeDebut;
 			this.dateFinPeriodeAbsence = datedeFin;
 			this.typeAbsence = typeAbsence;
-			this.fichierJustificatif = fichierJustificatif;
+			this.nomFichierJustificatif = nomFichierJustificatif;
 			this.etat = etat;
 		}
 	
@@ -78,13 +76,13 @@ public class PeriodeAbsence {
 		}
 		
 		
-		public File getFichierJustificatif() {
-			return fichierJustificatif;
+		public String getNomFichierJustificatif() {
+			return nomFichierJustificatif;
 		}
 		
 		
-		public void setFichierJustificatif(File fichierJustificatif) {
-			this.fichierJustificatif = fichierJustificatif;
+		public void setNomFichierJustificatif(String nomFichierJustificatif) {
+			this.nomFichierJustificatif = nomFichierJustificatif;
 		}
 		
 		

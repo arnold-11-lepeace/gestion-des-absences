@@ -91,7 +91,7 @@ public class AcceuilEtudiant {
 		JButton btnConsulterListeAbsences = new JButton("Mes absences");
 		btnConsulterListeAbsences.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CreerEtudiant window = new CreerEtudiant();
+				//CreerEtudiant window = new CreerEtudiant();
 				pageAcceuilEtudiant.setVisible(false);
 			}
 		});
@@ -131,6 +131,11 @@ public class AcceuilEtudiant {
 		menuBar.add(btnAbsences);
 		
 		JButton btnPlanning = new JButton("Planning");
+		btnPlanning.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlanningEtudiant window = new PlanningEtudiant();
+			}
+		});
 		menuBar.add(btnPlanning);
 		
 		JButton btnNotes = new JButton("Notes");
