@@ -49,30 +49,35 @@ public class DemandeTypeJustificatif {
 		ChoixTypeJustificatif.setBounds(100, 100, 450, 300);
 		ChoixTypeJustificatif.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ChoixTypeJustificatif.getContentPane().setLayout(null);
-		
-		
+
 		JPanel panelEntete = new JPanel();
 		panelEntete.setBackground(new Color(128, 128, 255));
 		panelEntete.setBounds(10, 11, 414, 53);
 		ChoixTypeJustificatif.getContentPane().add(panelEntete);
 		panelEntete.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("ESIGELEC");
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblNewLabel.setBounds(10, 11, 91, 36);
-		panelEntete.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Déconnexion");
-		btnNewButton.setBackground(new Color(255, 0, 0));
-		btnNewButton.setBounds(283, 11, 108, 23);
-		panelEntete.add(btnNewButton);
-		
+
+		JLabel labelEsigelec = new JLabel("ESIGELEC");
+		labelEsigelec.setForeground(Color.RED);
+		labelEsigelec.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		labelEsigelec.setBounds(10, 11, 91, 36);
+		panelEntete.add(labelEsigelec);
+
+		JButton btnDeconnexion = new JButton("Déconnexion");
+		btnDeconnexion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChoixTypeJustificatif.setVisible(false);
+				Conexion window = new Conexion();
+			}
+		});
+		btnDeconnexion.setBackground(new Color(255, 0, 0));
+		btnDeconnexion.setBounds(283, 11, 108, 23);
+		panelEntete.add(btnDeconnexion);
+
 		JPanel panelCorps = new JPanel();
 		panelCorps.setBounds(10, 63, 414, 187);
 		ChoixTypeJustificatif.getContentPane().add(panelCorps);
 		panelCorps.setLayout(null);
-		
+
 		txtQuelTypeDe = new JTextField();
 		txtQuelTypeDe.setBackground(new Color(255, 255, 255));
 		txtQuelTypeDe.setEditable(false);
@@ -80,7 +85,7 @@ public class DemandeTypeJustificatif {
 		txtQuelTypeDe.setBounds(51, 11, 329, 48);
 		panelCorps.add(txtQuelTypeDe);
 		txtQuelTypeDe.setColumns(10);
-		
+
 		JButton btnNewButton_1 = new JButton("Justificatif d'absence pour une période");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,7 +95,7 @@ public class DemandeTypeJustificatif {
 		});
 		btnNewButton_1.setBounds(84, 81, 255, 23);
 		panelCorps.add(btnNewButton_1);
-		
+
 		JButton btnNewButton_1_1 = new JButton("Justificatif d'absence pour un cours");
 		btnNewButton_1_1.setBounds(84, 115, 258, 23);
 		panelCorps.add(btnNewButton_1_1);

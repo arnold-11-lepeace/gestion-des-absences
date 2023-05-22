@@ -30,7 +30,7 @@ public class Identification extends Conexion {
 	private Eleve connectedEleve;
 	private Gestionnaire connectedGestionnaire;
 	static int connectedEleveId;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +39,7 @@ public class Identification extends Conexion {
 			public void run() {
 				try {
 					Identification window = new Identification();
-					//window.identificationFrame.setVisible(true);
+					// window.identificationFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,104 +65,87 @@ public class Identification extends Conexion {
 		identificationFrame.setBounds(100, 100, 450, 300);
 		identificationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		identificationFrame.getContentPane().setLayout(null);
-		
+
 		JPanel panelFeuille = new JPanel();
 		panelFeuille.setBackground(new Color(128, 128, 255));
 		panelFeuille.setBounds(10, 11, 414, 239);
 		identificationFrame.getContentPane().add(panelFeuille);
 		panelFeuille.setLayout(null);
-		
+
 		idField = new JTextField();
 		idField.setBounds(123, 85, 201, 20);
 		panelFeuille.add(idField);
 		idField.setColumns(10);
-		
+
 		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Page d'identification");
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewJgoodiesTitle.setBounds(149, 16, 130, 20);
 		lblNewJgoodiesTitle.setForeground(new Color(255, 255, 255));
 		panelFeuille.add(lblNewJgoodiesTitle);
-		
+
 		mdpField = new JPasswordField();
 		mdpField.setColumns(8);
 		mdpField.setBounds(123, 131, 201, 20);
 		panelFeuille.add(mdpField);
-		
+
 		JLabel Ibidentifiant = new JLabel("Identifiant");
 		Ibidentifiant.setBackground(new Color(128, 128, 192));
 		Ibidentifiant.setBounds(32, 88, 63, 14);
 		panelFeuille.add(Ibidentifiant);
-		
+
 		JLabel lblMotDePasse = new JLabel("mot de passe");
 		lblMotDePasse.setBounds(19, 134, 89, 14);
 		panelFeuille.add(lblMotDePasse);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("ESIGELEC");
 		lblNewLabel_1.setForeground(new Color(255, 0, 0));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(19, 11, 76, 29);
 		panelFeuille.add(lblNewLabel_1);
-		
-		
-		
-		
-		
-		
-		
+
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				// Se connecte à la page d'acceuil de l'étudiant
-				if(role.length()==8) {
+				if (role.length() == 8) {
 					System.out.println(role);
 					EleveDao elevDAO = new EleveDao();
 					int identifiant = Integer.parseInt(idField.getText());
-					 connectedEleve = elevDAO.login(identifiant, mdpField.getText());
+					connectedEleve = elevDAO.login(identifiant, mdpField.getText());
 
-						if(  connectedEleve!=null )  {
-							AcceuilEtudiant window = new AcceuilEtudiant();
-							identificationFrame.setVisible(false);
-							System.out.println("identification reussie");
-							System.out.println(mdpField.getText());
-							connectedEleveId=identifiant;
+					if (connectedEleve != null) {
+						AcceuilEtudiant window = new AcceuilEtudiant();
+						identificationFrame.setVisible(false);
+						System.out.println("identification reussie");
+						System.out.println(mdpField.getText());
+						connectedEleveId = identifiant;
+					} else {
+						System.out.println("identification échouée");
+						System.out.println(mdpField.getText());
+
 					}
-						else {
-							System.out.println("identification échouée");
-							System.out.println(mdpField.getText());
-							
-						}
-					
-						
-						// Se connecte à la page d'acceuil du gestionnaire
-					
-				}else if (role.length()==12) {
+
+					// Se connecte à la page d'acceuil du gestionnaire
+
+				} else if (role.length() == 12) {
 					System.out.println(role);
 					GestionnaireDao GestionnaireDAO = new GestionnaireDao();
 					int identifiant = Integer.parseInt(idField.getText());
-					 connectedGestionnaire= GestionnaireDAO.loginGestionnaire(identifiant, mdpField.getText());
-					 if(  connectedGestionnaire!=null )  {
-							AcceuilGestionnaire window = new AcceuilGestionnaire();
-							identificationFrame.setVisible(false);
-							System.out.println("identification reussie");
-							System.out.println(mdpField.getText());
+					connectedGestionnaire = GestionnaireDAO.loginGestionnaire(identifiant, mdpField.getText());
+					if (connectedGestionnaire != null) {
+						AcceuilGestionnaire window = new AcceuilGestionnaire();
+						identificationFrame.setVisible(false);
+						System.out.println("identification reussie");
+						System.out.println(mdpField.getText());
+					} else {
+						System.out.println("identification échouée");
+						System.out.println(mdpField.getText());
+
 					}
-						else {
-							System.out.println("identification échouée");
-							System.out.println(mdpField.getText());
-							
-						}
-					 
-					
-					
-					
-					
+
 				}
-				
-				
-				
-				
-				
+
 			}
 		});
 		btnValider.setForeground(new Color(0, 0, 0));
@@ -170,7 +153,6 @@ public class Identification extends Conexion {
 		btnValider.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btnValider.setBounds(278, 188, 89, 23);
 		panelFeuille.add(btnValider);
-		
-		
+
 	}
 }

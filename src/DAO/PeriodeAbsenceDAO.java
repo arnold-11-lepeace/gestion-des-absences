@@ -21,7 +21,6 @@ import Model.ElevePeriodeAbsenceDeclare;
 import Model.PeriodeAbsence;
 import oracle.net.aso.c;
 
-
 /**
  * Classe d'acces aux donnees contenues dans la table PERIODE ABSENCE
  * 
@@ -31,13 +30,13 @@ import oracle.net.aso.c;
 public class PeriodeAbsenceDAO extends ConnectionDAO {
 
 	/**
-	 *constructor
+	 * constructor
 	 */
 	public PeriodeAbsenceDAO() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-	
+
 	/*
 	 * Permet d'ajouter une matière dans la base de données
 	 * 
@@ -54,15 +53,16 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 			// preparation de l'instruction SQL, chaque ? represente une valeur
 			// a communiquer dans l'insertion.
 			// les getters permettent de recuperer les valeurs des attributs
-			ps = con.prepareStatement("INSERT INTO PERIODEABSENCE (DATEDEBUT,DATEFIN,TYPE,ETAT,NOMFICHIERJUSTIFICATIF,idetudiantp) VALUES ( ?, ?, ?, ?, ?,?)");
-			ps.setString(1,  periode.getDateDebutPeriodeAbsence());
-			ps.setString(2,   periode.getDateFinPeriodeAbsence());
+			ps = con.prepareStatement(
+					"INSERT INTO PERIODEABSENCE (DATEDEBUT,DATEFIN,TYPE,ETAT,NOMFICHIERJUSTIFICATIF,idetudiantp) VALUES ( ?, ?, ?, ?, ?,?)");
+			ps.setString(1, periode.getDateDebutPeriodeAbsence());
+			ps.setString(2, periode.getDateFinPeriodeAbsence());
 			ps.setString(3, "physique");
 			ps.setInt(4, 0);
-			ps.setString(5,periode.getNomFichierJustificatif() );
-			ps.setInt(6,idEtudiant );
-			
-			//System.out.println("C'est arrivé");
+			ps.setString(5, periode.getNomFichierJustificatif());
+			ps.setInt(6, idEtudiant);
+
+			// System.out.println("C'est arrivé");
 
 			// Execution de la requete
 			returnValue = ps.executeUpdate();
@@ -80,14 +80,14 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 				}
 			} catch (Exception ignore) {
 			}
-			
+
 		}
 		return returnValue;
 	}
-	
-	
+
 	/*
-	 * Permet de modifier l'état de la période absence déclarée dans la base de données
+	 * Permet de modifier l'état de la période absence déclarée dans la base de
+	 * données
 	 * 
 	 */
 	public int update(int etat, int idDeclarationabs) {
@@ -106,7 +106,6 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 			ps = con.prepareStatement("UPDATE periodeabsence SET periodeabsence.etat=? WHERE IDABSENCEPERIODE = ?");
 			ps.setInt(1, etat);
 			ps.setInt(2, idDeclarationabs);
-			
 
 			// Execution de la requete
 			returnValue = ps.executeUpdate();
@@ -131,9 +130,6 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 		return returnValue;
 	}
 
-	
-	
-	
 	public ArrayList<PeriodeAbsence> getList() {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -141,14 +137,14 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 		ArrayList<PeriodeAbsence> returnValue = new ArrayList<PeriodeAbsence>();
 		// connexion a la base de donnees
 		try {
-			con = DriverManager.getConnection(URL,LOGIN , PASS);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM PERIODEABSENCE WHERE ETAT=0");
 			// on execute la requete
 			rs = ps.executeQuery();
 			// on parcourt les lignes du resultat
 			while (rs.next()) {
-				returnValue.add(new PeriodeAbsence(rs.getInt(1),""+rs.getString(2), ""+rs.getDate(3), rs.getString(4),
-					rs.getString(7), rs.getInt(5)));
+				returnValue.add(new PeriodeAbsence(rs.getInt(1), "" + rs.getString(2), "" + rs.getDate(3),
+						rs.getString(4), rs.getString(7), rs.getInt(5)));
 			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -175,37 +171,35 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 		}
 		return returnValue;
 	}
-	
-	
+
 	public static void main(String[] args) throws SQLException {
 		int returnValue;
-		float t1[]= {2, 25, 23};
-		//DateFormat 
-		 //Date aujourdhui = new Date(1, 1, 2);
-		 Date aujourdhui = new Date(23, 1, 01);
-		 Date Demain = new Date(23, 1, 02);
-		 File file = new File("C:\\Users\\ONANA Arnold\\eclipse-workspace\\Gestion absences\\images\\flèche déposer.png");
-		 PeriodeAbsenceDAO periodeDAO = new PeriodeAbsenceDAO();
-		 
-		// PeriodeAbsence P1 = new PeriodeAbsence(aujourdhui, Demain, "physique", file, 1);
-		 //returnValue = periodeDAO.add(P1);
-			//System.out.println("Ajout éffectué");
-			//System.out.println(returnValue + " eleve ajoute");
-	    DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
-	        DateFormat.SHORT,
-	        DateFormat.SHORT);
-	    
-	    
-	    ArrayList<PeriodeAbsence> listEleve = new PeriodeAbsenceDAO().getList();
+		float t1[] = { 2, 25, 23 };
+		// DateFormat
+		// Date aujourdhui = new Date(1, 1, 2);
+		Date aujourdhui = new Date(23, 1, 01);
+		Date Demain = new Date(23, 1, 02);
+		File file = new File(
+				"C:\\Users\\ONANA Arnold\\eclipse-workspace\\Gestion absences\\images\\flèche déposer.png");
+		PeriodeAbsenceDAO periodeDAO = new PeriodeAbsenceDAO();
+
+		// PeriodeAbsence P1 = new PeriodeAbsence(aujourdhui, Demain, "physique", file,
+		// 1);
+		// returnValue = periodeDAO.add(P1);
+		// System.out.println("Ajout éffectué");
+		// System.out.println(returnValue + " eleve ajoute");
+		DateFormat shortDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+
+		ArrayList<PeriodeAbsence> listEleve = new PeriodeAbsenceDAO().getList();
 		// listEleve
 		for (int i = 0; i < listEleve.size(); i++) {
 			System.out.println(listEleve.get(i).getDateDebutPeriodeAbsence());
 		}
-	    
-	    //System.out.println(formater.format(aujourdhui));
-		//System.out.println(returnValue + " matiére ajoutée");
-	    //System.out.println(shortDateFormat.format(aujourdhui));
-		
+
+		// System.out.println(formater.format(aujourdhui));
+		// System.out.println(returnValue + " matiére ajoutée");
+		// System.out.println(shortDateFormat.format(aujourdhui));
+
 	}
 
 }

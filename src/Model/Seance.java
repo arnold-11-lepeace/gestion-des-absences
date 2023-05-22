@@ -3,27 +3,25 @@ package Model;
 import java.util.Date;
 
 public class Seance {
-	
+
 	private int idSeance;
 	private String nomSeance;
 	private String typeSeance;
 	private int numerogroupe;
-	private String date ;
+	private String date;
 	private Float Durree;
 
-
-	public Seance(int idSeance,String nomSeance, String typeSeance,int numerogroupe,
-			String date,Float Durree) {
+	public Seance(int idSeance, String nomSeance, String typeSeance, int numerogroupe, String date, Float Durree) {
 		// TODO Auto-generated constructor stub
 		super();
-		
-		this.idSeance=idSeance;
-		this.nomSeance=nomSeance;
+
+		this.idSeance = idSeance;
+		this.nomSeance = nomSeance;
 		this.typeSeance = typeSeance;
-		this.numerogroupe=numerogroupe;
+		this.numerogroupe = numerogroupe;
 		this.date = date;
-		this.Durree=Durree;
-		
+		this.Durree = Durree;
+
 	}
 
 	public int getIdSeance() {
@@ -41,6 +39,7 @@ public class Seance {
 	public void setNomSeance(String nomSeance) {
 		this.nomSeance = nomSeance;
 	}
+
 	public String getTypeSeance() {
 		return typeSeance;
 	}
@@ -48,7 +47,7 @@ public class Seance {
 	public void setTypeSeance(String typeSeance) {
 		this.typeSeance = typeSeance;
 	}
-	
+
 	public int getNumerogroupe() {
 		return numerogroupe;
 	}
@@ -64,7 +63,6 @@ public class Seance {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
 
 	public Float getDurree() {
 		return Durree;

@@ -1,4 +1,5 @@
 package DAO;
+
 import java.sql.*;
 import java.util.ArrayList;
 import Model.Matiere;
@@ -17,9 +18,9 @@ public class MatiereDAO extends ConnectionDAO {
 	 */
 	public MatiereDAO() {
 		super();
-		
+
 	}
-	
+
 	/*
 	 * Permet d'ajouter une matière dans la base de données
 	 * 
@@ -36,7 +37,8 @@ public class MatiereDAO extends ConnectionDAO {
 			// preparation de l'instruction SQL, chaque ? represente une valeur
 			// a communiquer dans l'insertion.
 			// les getters permettent de recuperer les valeurs des attributs
-			ps = con.prepareStatement("INSERT INTO MATIERE (NOMMATIERE,MASSEHORAIRE,REPARTITIONHORAIRECM,REPARTITIONHORAIRETD,REPARTITIONHORAIRETP) VALUES (?, ?, ?,?,?)");
+			ps = con.prepareStatement(
+					"INSERT INTO MATIERE (NOMMATIERE,MASSEHORAIRE,REPARTITIONHORAIRECM,REPARTITIONHORAIRETD,REPARTITIONHORAIRETP) VALUES (?, ?, ?,?,?)");
 			ps.setString(1, matiere.getNomMatiere());
 			ps.setFloat(2, matiere.getMasseHoraireMatiere());
 			ps.setFloat(3, matiere.getRepartitionHoraireCM());
@@ -59,21 +61,20 @@ public class MatiereDAO extends ConnectionDAO {
 				}
 			} catch (Exception ignore) {
 			}
-			
+
 		}
 		return returnValue;
 	}
-	
-	
+
 	public static void main(String[] args) throws SQLException {
 		int returnValue;
-		float t1[]= {2, 25, 23};
-		Matiere m1= new Matiere("info",80 , t1);
+		float t1[] = { 2, 25, 23 };
+		Matiere m1 = new Matiere("info", 80, t1);
 		MatiereDAO matiere = new MatiereDAO();
-		returnValue= matiere.add(m1);
-		//System.out.println("Ajout éffectué");
+		returnValue = matiere.add(m1);
+		// System.out.println("Ajout éffectué");
 		System.out.println(returnValue + " matiére ajoutée");
-		
+
 	}
 
 }

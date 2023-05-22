@@ -34,7 +34,8 @@ public class EleveDao extends ConnectionDAO {
 			// preparation de l'instruction SQL, chaque ? represente une valeur
 			// a communiquer dans l'insertion.
 			// les getters permettent de recuperer les valeurs des attributs
-			ps = con.prepareStatement("INSERT INTO ETUDIANT (MOTDEPASSEETUDIANT,nometudiant,prenometudiant,adressemail,filiereetudiant) VALUES (?, ?, ?,?,?)");
+			ps = con.prepareStatement(
+					"INSERT INTO ETUDIANT (MOTDEPASSEETUDIANT,nometudiant,prenometudiant,adressemail,filiereetudiant) VALUES (?, ?, ?,?,?)");
 			// ps.setInt(1, eleve.getIdEleve());
 			ps.setString(1, eleve.getmotDePasseEleve());
 			ps.setString(2, eleve.getNomEleve());
@@ -58,7 +59,7 @@ public class EleveDao extends ConnectionDAO {
 				}
 			} catch (Exception ignore) {
 			}
-			
+
 		}
 		return returnValue;
 	}
@@ -96,7 +97,7 @@ public class EleveDao extends ConnectionDAO {
 				}
 			} catch (Exception ignore) {
 			}
-			
+
 		}
 		return returnValue;
 	}
@@ -142,8 +143,8 @@ public class EleveDao extends ConnectionDAO {
 					ps.close();
 				}
 			} catch (Exception ignore) {
-	
-		}
+
+			}
 		}
 		return returnValue;
 
@@ -193,7 +194,7 @@ public class EleveDao extends ConnectionDAO {
 		ArrayList<Eleve> returnValue = new ArrayList<Eleve>();
 		// connexion a la base de donnees
 		try {
-			con = DriverManager.getConnection(URL,LOGIN , PASS);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM ETUDIANT");
 			// on execute la requete
 			rs = ps.executeQuery();
@@ -227,8 +228,6 @@ public class EleveDao extends ConnectionDAO {
 		}
 		return returnValue;
 	}
-	
-	
 
 	public static void main(String[] args) throws SQLException {
 		int returnValue;
@@ -245,9 +244,9 @@ public class EleveDao extends ConnectionDAO {
 		// returnValue=EleveDAO.add(E1);
 		// returnValue=EleveDAO.add(E2);
 		// returnValue=EleveDAO.add(E3);
-		//returnValue = EleveDAO.add(E4);
+		// returnValue = EleveDAO.add(E4);
 		System.out.println("Ajout éffectué");
-		//System.out.println(returnValue + " eleve ajoute");
+		// System.out.println(returnValue + " eleve ajoute");
 		// test de la methode get
 		// Eleve E = EleveDAO.get(E1);
 		// appel implicite de la methode toString de la classe Object (a eviter)

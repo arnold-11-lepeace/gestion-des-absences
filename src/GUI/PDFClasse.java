@@ -1,5 +1,4 @@
 package GUI;
-
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
@@ -8,7 +7,7 @@ public class PDFClasse {
     try 
     {
         //Créer une instance PdfReader.
-        PdfReader pdf = new PdfReader("C:\\my.pdf");  
+        PdfReader pdf = new PdfReader("C:\\Users\\ONANA Arnold\\eclipse-workspace\\Gestion absences\\justificatif d'absences\\états deuxième trimestre.pdf");  
    
         //Récupérer le nombre de pages en pdf.
         int nbrPages = pdf.getNumberOfPages(); 
@@ -18,6 +17,7 @@ public class PDFClasse {
         { 
             //Extraire le contenu de la page à l'aide de PdfTextExtractor.
             String content = PdfTextExtractor.getTextFromPage(pdf, i);
+           System.out.println(content); 
    
             //Afficher le contenu de la page sur la console.
             System.out.println("Contenu du page : " + content);
@@ -31,3 +31,4 @@ public class PDFClasse {
     }
   }
 }
+
