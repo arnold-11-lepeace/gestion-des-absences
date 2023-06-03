@@ -208,16 +208,17 @@ public class PageDepotJustificatif extends Identification {
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String dateDeDebut = (((JTextField) dateDebutPeriode.getDateEditor().getUiComponent()).getText());
-				String datedeFin = (((JTextField) dateFinPeriode.getDateEditor().getUiComponent()).getText());
-
+				java.util.Date dateDeDebut =dateDebutPeriode.getDateEditor().getDate();
+				java.util.Date datedeFin =dateFinPeriode.getDateEditor().getDate();
+				
+						
 				PeriodeAbsence p1 = new PeriodeAbsence(-1, dateDeDebut, datedeFin, "physique", selectedFileName,
 						connectedEleveId);
 				periodeAbsenceDao.add(p1, connectedEleveId);
 
 				File src = new File(selectedFileAccessPath);
 				File dest = new File(
-						"C:\\Users\\ONANA Arnold\\eclipse-workspace\\Gestion absences\\justificatif d'absences\\"
+						"justificatif d'absences\\"
 								+ selectedFileName);
 				InputStream is = null;
 				OutputStream os = null;

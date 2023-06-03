@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -142,17 +143,19 @@ public class PlanningEtudiant {
 							lblNomSeance.setText("-" + listSeancecours.get(i).getNomSeance());
 							lblDureeSeance.setText("- Durée:" + listSeancecours.get(i).getDurree());
 							Seance a = listSeancecours.get(i);
-							/*
-							 * for(int j=0; j<listDeclarationsAbsences.size();i++) { String dD
-							 * =listDeclarationsAbsences.get(j).getDateDebutPeriodeAbsence(); String dF
-							 * =listDeclarationsAbsences.get(j).getDateFinPeriodeAbsence();
-							 * 
-							 * Date dateDebut = new SimpleDateFormat("dd/MM/yyyy").parse(dD); Date dateFin =
-							 * new SimpleDateFormat("dd/MM/yyyy").parse(dF); }
-							 */
-							// if(dateDebut<B) {
-							// }
-							btnLienDistanciel.setText("lien fictif");
+
+							for (int j = 0; j < listDeclarationsAbsences.size(); j++) {
+
+								Date dD = listDeclarationsAbsences.get(j).getDateDebutPeriodeAbsence();
+
+								Date dF = listDeclarationsAbsences.get(j).getDateFinPeriodeAbsence();
+
+								if (dD.before(B) && dF.after(B)) {
+									btnLienDistanciel.setText("lien fictif");
+									System.out.println("c'est bon");
+								}
+							}
+
 							panelCours.setVisible(true);
 							calendar.setVisible(false);
 

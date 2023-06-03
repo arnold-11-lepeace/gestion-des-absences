@@ -55,8 +55,8 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 			// les getters permettent de recuperer les valeurs des attributs
 			ps = con.prepareStatement(
 					"INSERT INTO PERIODEABSENCE (DATEDEBUT,DATEFIN,TYPE,ETAT,NOMFICHIERJUSTIFICATIF,idetudiantp) VALUES ( ?, ?, ?, ?, ?,?)");
-			ps.setString(1, periode.getDateDebutPeriodeAbsence());
-			ps.setString(2, periode.getDateFinPeriodeAbsence());
+			ps.setString(1, ""+periode.getDateDebutPeriodeAbsence());
+			ps.setString(2, ""+periode.getDateFinPeriodeAbsence());
 			ps.setString(3, "physique");
 			ps.setInt(4, 0);
 			ps.setString(5, periode.getNomFichierJustificatif());
@@ -143,7 +143,7 @@ public class PeriodeAbsenceDAO extends ConnectionDAO {
 			rs = ps.executeQuery();
 			// on parcourt les lignes du resultat
 			while (rs.next()) {
-				returnValue.add(new PeriodeAbsence(rs.getInt(1), "" + rs.getString(2), "" + rs.getDate(3),
+				returnValue.add(new PeriodeAbsence(rs.getInt(1), rs.getDate(2), rs.getDate(3),
 						rs.getString(4), rs.getString(7), rs.getInt(5)));
 			}
 		} catch (Exception ee) {

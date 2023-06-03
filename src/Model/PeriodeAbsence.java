@@ -3,6 +3,8 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  * @author ONANA Arnold
  *
@@ -17,13 +19,13 @@ public class PeriodeAbsence {
 	 * @param etat
 	 */
 	private int id;
-	private String dateDebutPeriodeAbsence;
-	private String dateFinPeriodeAbsence;
+	private Date dateDebutPeriodeAbsence;
+	private Date dateFinPeriodeAbsence;
 	private String typeAbsence;
 	private String nomFichierJustificatif;
 	private int etat;
 
-	public PeriodeAbsence(int id, String dateDeDebut, String datedeFin, String typeAbsence,
+	public PeriodeAbsence(int id, Date dateDeDebut, Date datedeFin, String typeAbsence,
 			String nomFichierJustificatif, int etat) {
 		super();
 		this.id = id;
@@ -42,19 +44,19 @@ public class PeriodeAbsence {
 		this.id = id;
 	}
 
-	public String getDateDebutPeriodeAbsence() {
+	public Date getDateDebutPeriodeAbsence() {
 		return dateDebutPeriodeAbsence;
 	}
 
-	public void setDateDebutPeriodeAbsence(String dateDebutPeriodeAbsence) {
+	public void setDateDebutPeriodeAbsence(Date dateDebutPeriodeAbsence) {
 		this.dateDebutPeriodeAbsence = dateDebutPeriodeAbsence;
 	}
 
-	public String getDateFinPeriodeAbsence() {
+	public Date getDateFinPeriodeAbsence() {
 		return dateFinPeriodeAbsence;
 	}
 
-	public void setDateFinPeriodeAbsence(String dateFinPeriodeAbsence) {
+	public void setDateFinPeriodeAbsence(Date dateFinPeriodeAbsence) {
 		this.dateFinPeriodeAbsence = dateFinPeriodeAbsence;
 	}
 

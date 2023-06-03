@@ -114,10 +114,15 @@ public class ListeJustificatifs {
 
 						break;
 					case 2:
-						panelCorps.add(new JLabel(listJustificaifEleve.get(row).getDateDebutPeriodeAbsence()));
+						
+						JLabel labelDateDebut = new JLabel(
+								"" + listJustificaifEleve.get(row).getDateDebutPeriodeAbsence());
+						panelCorps.add(labelDateDebut);
 						break;
 					case 3:
-						panelCorps.add(new JLabel(listJustificaifEleve.get(row).getDateFinPeriodeAbsence()));
+						JLabel labelDateFin = new JLabel(
+								"" + listJustificaifEleve.get(row).getDateDebutPeriodeAbsence());
+						panelCorps.add(labelDateFin);
 						break;
 					case 4:
 						JCheckBox chckbxEtudiant = new JCheckBox("");
